@@ -7,6 +7,14 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+Team Members:
+
+  * Max Devoe
+  * Andrew Pepper-Anderson
+  * Adam Quinn
+  * Charlotte Smith
+  * Yuliya Zhak
+
 Things you may want to cover:
 
 * Ruby version
