@@ -15,6 +15,20 @@ ActiveRecord::Schema.define(version: 20180123203319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "floofs", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "floofiness"
+    t.string "image"
+  end
+
+  create_table "posts", id: :serial, force: :cascade do |t|
+    t.text "body"
+    t.integer "floof_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["floof_id"], name: "index_posts_on_floof_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
