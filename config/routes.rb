@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'homes#index'
   devise_for :users
 
   get '/floofs', to: 'homes#index'
