@@ -34,4 +34,19 @@ feature 'NavBar' do
     expect(page).to have_link('Add Floof')
     expect(page).to have_link('Sign Out')
   end
+
+  scenario "As a user I want to be able to navigate to the Add Floof page from the NavBar dropdown" do
+    user = FactoryBot.create(:user)
+
+    visit new_user_session_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+
+    click_button 'Log in'
+    expect(page).to have_content('Signed in successfully')
+
+    click_link "Add Floof"
+    expect(page).to have_current_path('/floofs/new')
+  end
 end

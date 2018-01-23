@@ -12,7 +12,7 @@
           <a href="#">User Actions</a>
           <ul class="dropdown">
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Add Floof</a></li>
+            <li><%= link_to 'Add Floof', floofs_new_path %></li>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           </ul>
       <%- else -%>
