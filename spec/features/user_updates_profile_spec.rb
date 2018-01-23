@@ -22,7 +22,6 @@ feature 'user updates profile', %Q{
     fill_in 'First Name', with: 'Jon'
     fill_in 'Last Name', with: 'Targaryen'
     fill_in 'Username', with: 'iceandfire'
-    uncheck 'Admin'
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'

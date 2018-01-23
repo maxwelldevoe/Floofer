@@ -18,14 +18,12 @@ feature 'user registers', %Q{
     fill_in 'First Name', with: 'John'
     fill_in 'Last Name', with: 'Snow'
     fill_in 'Username', with: 'johnsnow'
-    uncheck 'Admin'
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
 
     click_button 'Sign up'
 
-    expect(page).to_not have_checked_field('Admin')
     expect(page).to have_content('Welcome! You have signed up successfully.')
     expect(page).to have_content('Sign Out')
 
