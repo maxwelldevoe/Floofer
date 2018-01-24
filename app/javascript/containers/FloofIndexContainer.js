@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react'
+import FloofCategoryTile from '../components/FloofCategoryTile'
 
-const FloofIndexContainer = (props) => {
+class FloofIndexContainer extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      floofs: [{
+        id: 1,
+        name: 'Spot',
+        job_title: 'Senior Web Developer',
+        picture: 'http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
+      },
+      {
+        id: 2,
+        name: 'Rova',
+        job_title: 'Junior Associate',
+        picture: 'http://teachyourpetstotype.com/dogtyping4.jpg'
+      }
+    ]
+    }
+  }
 
-return(
-  <h1>Hello from Floof Index container</h1>
-)}
+  render() {
+    return(
+      <div>
+        <FloofCategoryTile
+          floofData={this.state.floofs}
+        />
+      </div>
+    )
+  }
+}
 
 export default FloofIndexContainer;
