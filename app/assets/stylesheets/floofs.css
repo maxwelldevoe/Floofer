@@ -1,0 +1,21 @@
+.floof_tile {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin: 25px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.floof_cat_tile {
+  position: fixed;
+  margin: 10px auto 10px auto;
+  padding: 20px;
+  border: 1px solid black;
+  float: center;
+  width: 80%;
+}
+
+.floof_cat_tile {
+
+}

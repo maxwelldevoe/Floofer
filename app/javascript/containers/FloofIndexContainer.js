@@ -10,7 +10,14 @@ class FloofIndexContainer extends Component {
         name: 'Spot',
         job_title: 'Senior Web Developer',
         picture: 'http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
-      }]
+      },
+      {
+        id: 2,
+        name: 'Rova',
+        job_title: 'Junior Associate',
+        picture: 'http://teachyourpetstotype.com/dogtyping4.jpg'
+      }
+    ]
     }
   }
 

@@ -16,7 +16,7 @@ const FloofCategoryTile = (props) => {
   })
 
   return(
-    <div>
+    <div className='floof_cat_tile'>
       {floofTileComponents}
     </div>
   )
