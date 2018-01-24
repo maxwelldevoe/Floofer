@@ -5,5 +5,12 @@ Rails.application.routes.draw do
   get '/floofs', to: 'floofs#index'
   get '/floofs/:id', to: 'floofs#index'
   get '/floofs/new', to: 'floofs#index'
+
+
+    namespace :api do
+      namespace :v1 do
+        resources :floofs, only: [:index]
+      end
+    end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
