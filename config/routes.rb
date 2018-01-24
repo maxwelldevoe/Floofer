@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root 'floofs#index'
   devise_for :users
 
-  get '/floofs', to: 'homes#index'
-  get '/floofs/:id', to: 'homes#index'
-  get '/floofs/new', to: 'homes#index'
+  get '/floofs', to: 'floofs#index'
+  get '/floofs/:id', to: 'floofs#index'
+  get '/floofs/new', to: 'floofs#index'
 
 
     namespace :api do
