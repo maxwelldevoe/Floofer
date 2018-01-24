@@ -8,14 +8,18 @@
 }
 
 .floof_cat_tile {
-  position: fixed;
   margin: 10px auto 10px auto;
-  padding: 20px;
   border: 1px solid black;
   float: center;
   width: 80%;
 }
 
-.floof_cat_tile {
+header {
+  height: 40px;
+  color: white;
+  background-color: blue;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px 10px;
 
 }
