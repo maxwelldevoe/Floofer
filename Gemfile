@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#New gem to assist with uploading files directly to the site
+gem "carrierwave"
+
 group :development, :test do
 
 end

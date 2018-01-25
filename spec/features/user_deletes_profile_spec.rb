@@ -16,7 +16,7 @@ feature 'A user deletes themself....forever', %Q{
     click_button 'Log in'
     visit edit_user_registration_path
 
-    click_button 'Cancel my account'
+    click_link 'Cancel my account'
 
     expect(page).to have_content('successfully cancelled')
 

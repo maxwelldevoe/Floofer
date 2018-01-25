@@ -25,3 +25,6 @@ yarn-error.log*
 .yarn-integrity
 /coverage
 .env
+
+# Ignore uploaded files in test/development
+/public/uploads
