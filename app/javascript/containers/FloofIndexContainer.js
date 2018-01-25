@@ -10,7 +10,7 @@ class FloofIndexContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/floofs')
+    fetch('/api/v1/floofs.json')
     .then(response => {
         if (response.ok) {
           return response;
@@ -31,22 +31,10 @@ class FloofIndexContainer extends Component {
 
   render() {
     let floofData = this.state.floofs
-    let floofCatTileComponents;
+    let floofCategoryTileComponents;
 
     if (floofData !== []) {
-      //create a list of categories
-      let categories = floofData.map((floof) => {
-        return floof.category
-      })
-      categories = categories.filter((category, index, categories) => categories.indexOf(category) === index);
-      categories = categories.sort()
-      
-      //map through our list of categories
-      let sortedFloofs = categories.map((category) => {
-        return floofData.filter(floof => floof.category === category)
-      })
-
-      floofCatTileComponents = sortedFloofs.map((floofs) => {
+      floofCategoryTileComponents = floofData.map((floofs) => {
         return(
           <FloofCategoryTile
             floofData={floofs}
@@ -57,7 +45,7 @@ class FloofIndexContainer extends Component {
 
     return(
       <div>
-        {floofCatTileComponents}
+        {floofCategoryTileComponents}
       </div>
     )
   }

@@ -16,8 +16,8 @@ RSpec.describe Api::V1::FloofsController, type: :controller do
       expect(response.content_type).to eq("application/json")
 
       expect(returned_json.length).to eq 1
-      expect(returned_json[0]["name"]).to eq "Bob"
-      expect(returned_json[0]["job_title"]).to eq "Accountant"
+      expect(returned_json[0][0]["name"]).to eq "Bob"
+      expect(returned_json[0][0]["job_title"]).to eq "Accountant"
 
     end
   end
