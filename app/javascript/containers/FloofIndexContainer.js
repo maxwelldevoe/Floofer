@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FloofCategoryTile from '../components/FloofCategoryTile'
 
 class FloofIndexContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       floofs: []

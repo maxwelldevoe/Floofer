@@ -15,13 +15,13 @@ describe('floof category tile', () => {
 
     wrapper = mount(
       <FloofCategoryTile
-        floofData={mockFloofData}
+        floofData={ mockFloofData }
       />
     )
   })
 
-  it('should have Floof Tiles', () => {
-    expect(wrapper.find('FloofTile')).toBePresent()
+  it('should have Floof Index Tiles', () => {
+    expect(wrapper.find('FloofIndexTile')).toBePresent()
   })
 
   it('should have a header with the floof category', () => {

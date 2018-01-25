@@ -1,11 +1,11 @@
 import React from 'react'
-import FloofTile from '../components/FloofTile'
+import FloofIndexTile from '../components/FloofIndexTile'
 
 const FloofCategoryTile = (props) => {
 
   let floofTileComponents = props.floofData.map((floof) => {
     return(
-      <FloofTile
+      <FloofIndexTile
         key={floof.id}
         id={floof.id}
         name={floof.name}

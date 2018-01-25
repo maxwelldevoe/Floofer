@@ -13,4 +13,11 @@ class Api::V1::FloofsController < ApplicationController
 
     render json: sorted_floofs
   end
+
+  def show
+    render json: Floof.find(params[:id])
+  end
+
+
+
 end
