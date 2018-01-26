@@ -5,12 +5,12 @@ class FloofIndexContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      floofs: []
+      sortedFloofs: []
     }
   }
 
   componentDidMount() {
-    fetch('/api/v1/floofs.json')
+    fetch('/api/v1/categories.json')
     .then(response => {
         if (response.ok) {
           return response;
@@ -24,22 +24,26 @@ class FloofIndexContainer extends Component {
         return response.json()
       })
       .then(body => {
-        this.setState({ floofs: body })
+        this.setState({ sortedFloofs: body.categories })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
-    let floofData = this.state.floofs
+    let floofData = this.state.sortedFloofs
     let floofCategoryTileComponents;
 
     if (floofData !== []) {
-      floofCategoryTileComponents = floofData.map((floofs) => {
-        return(
-          <FloofCategoryTile
-            floofData={floofs}
-          />
-        )
+      floofCategoryTileComponents = floofData.map((category) => {
+        if (category.floofs[0]) {
+          return(
+            <FloofCategoryTile
+              key={ category.id }
+              category={ category.name }
+              floofData={ category.floofs }
+            />
+          )
+        }
       })
     }
 

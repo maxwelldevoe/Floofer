@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root 'floofs#index'
   devise_for :users
 
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :floofs, only: [:index, :show] do
           resources :reviews, only: [:index, :show]
+          resources :categories, only: [:index]
         end
       end
     end
