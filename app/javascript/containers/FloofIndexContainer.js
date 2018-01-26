@@ -34,7 +34,6 @@ class FloofIndexContainer extends Component {
     let floofCategoryTileComponents;
 
     if (floofData !== []) {
-      debugger
       floofCategoryTileComponents = floofData.map((category) => {
         if (category.floofs[0]) {
           return(
