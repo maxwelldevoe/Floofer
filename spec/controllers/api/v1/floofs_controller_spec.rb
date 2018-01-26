@@ -19,7 +19,6 @@ RSpec.describe Api::V1::FloofsController, type: :controller do
       expect(returned_json["floof"]["job_title"]).to eq first_floof.job_title
       expect(returned_json["floof"]["current_employer"]).to eq first_floof.current_employer
       expect(returned_json["floof"]["species"]).to eq first_floof.species
-      expect(returned_json["floof"]["category"]).to eq first_category.name
     end
   end
 

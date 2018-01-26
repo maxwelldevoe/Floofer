@@ -34,13 +34,14 @@ class FloofIndexContainer extends Component {
     let floofCategoryTileComponents;
 
     if (floofData !== []) {
+      debugger
       floofCategoryTileComponents = floofData.map((category) => {
-        if (category.associated_floofs[0]) {
+        if (category.floofs[0]) {
           return(
             <FloofCategoryTile
               key={ category.id }
               category={ category.name }
-              floofData={ category.associated_floofs }
+              floofData={ category.floofs }
             />
           )
         }

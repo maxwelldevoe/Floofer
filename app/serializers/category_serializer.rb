@@ -1,7 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :associated_floofs
+  attributes :id, :name
 
-  def associated_floofs
-    object.floofs
-  end
+  has_many :floofs
 end
