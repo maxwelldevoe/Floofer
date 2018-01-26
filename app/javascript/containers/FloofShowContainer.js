@@ -25,7 +25,7 @@ class FloofShowContainer extends Component {
       return response.json()
     })
     .then(body => {
-      this.setState({ floof: body })
+      this.setState({ floof: body.floof })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
