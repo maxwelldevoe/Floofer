@@ -1,14 +1,13 @@
-import FloofTile from '../../../app/javascript/components/FloofTile'
-import jasmineEnzyme from 'jasmine-enzyme';
+import FloofIndexTile from '../../../app/javascript/components/FloofIndexTile'
 
-describe('FloofTile', () => {
+describe('Floof Index Tile', () => {
   let wrapper
 
   beforeEach(() => {
     jasmineEnzyme();
 
     wrapper = mount(
-      <FloofTile
+      <FloofIndexTile
         id={1}
         name='Rover'
         job='Junior Web Developer'

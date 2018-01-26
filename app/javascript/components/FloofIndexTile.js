@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const FloofTile = (props) => {
+const FloofIndexTile = (props) => {
   return(
     <Link to={`/floofs/${props.id}`}>
       <span className='floof_tile'>
@@ -12,4 +12,4 @@ const FloofTile = (props) => {
   )
 }
 
-export default FloofTile
+export default FloofIndexTile
