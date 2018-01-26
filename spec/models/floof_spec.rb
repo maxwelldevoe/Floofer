@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Floof, type: :model do
 
+  it { should have_many :reviews }
+  it { should have_many :users }
+
   it { should have_valid(:name).when('Mr. Peanut Butter') }
   it { should_not have_valid(:name).when(nil, '') }
 

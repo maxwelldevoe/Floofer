@@ -6,4 +6,7 @@ class User < ApplicationRecord
   validates :user_name, presence: true, uniqueness: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :reviews
+  has_many :floofs, through: :reviews
 end

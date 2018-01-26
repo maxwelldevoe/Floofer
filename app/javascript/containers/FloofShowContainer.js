@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FloofShowTile from '../components/FloofShowTile'
+import ReviewShowTile from '../components/ReviewShowTile'
 
 class FloofShowContainer extends Component {
   constructor(props) {
@@ -35,9 +36,16 @@ class FloofShowContainer extends Component {
 
     return(
       <div>
-        <FloofShowTile
+        <div>
+          <FloofShowTile
           floofData={ this.state.floof }
-        />
+          />
+        </div>
+        <div>
+          <ReviewShowTile
+          id={this.props.params.id}
+          />
+        </div>
       </div>
     )
   }
