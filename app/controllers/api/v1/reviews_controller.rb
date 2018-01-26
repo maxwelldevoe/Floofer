@@ -5,9 +5,9 @@ class Api::V1::ReviewsController < ApplicationController
     render json: all_reviews
   end
 
-
   def show
-    render json: Review.find(params[:id])
+    review = Review.find(params[:id])
+    render json: review
   end
 
 end
