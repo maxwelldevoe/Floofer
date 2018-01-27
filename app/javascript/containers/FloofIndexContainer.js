@@ -35,7 +35,7 @@ class FloofIndexContainer extends Component {
 
     if (floofData !== []) {
       floofCategoryTileComponents = floofData.map((category) => {
-        if (category.floofs[0]) {
+        if (category.floofs.length !== 0) {
           return(
             <FloofCategoryTile
               key={ category.id }
