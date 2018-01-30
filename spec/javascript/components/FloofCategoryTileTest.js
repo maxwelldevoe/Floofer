@@ -7,14 +7,15 @@ describe('floof category tile', () => {
   beforeEach(() => {
     mockFloofData = [{
       id: 1,
-      category: 'Business',
       name: 'Spot',
       job_title: 'Senior Web Developer',
-      picture: 'http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
+      picture: 'http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg',
+      category_id: 1
     }]
 
     wrapper = mount(
       <FloofCategoryTile
+        category="Business"
         floofData={ mockFloofData }
       />
     )
