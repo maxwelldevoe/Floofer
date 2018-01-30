@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+import { browserHistory } from 'react-router'
 import FormField from '../components/FormField'
 import CategoryField from '../components/CategoryField'
 
@@ -11,10 +11,12 @@ class NewFloofContainer extends Component {
         name: '',
         job_title: '',
         current_employer: '',
-        category: '',
+        category_id: '',
         species: ''
       },
-      message: ''
+      message: '',
+      categories: [],
+      errors: []
     }
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleJobChange = this.handleJobChange.bind(this)
@@ -23,6 +25,28 @@ class NewFloofContainer extends Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClear = this.handleClear.bind(this)
+    this.validateName = this.validateName.bind(this)
+    this.validateJobTitle = this.validateJobTitle.bind(this)
+    this.validateSpecies = this.validateSpecies.bind(this)
+    this.clearErrors = this.clearErrors.bind(this)
+  }
+
+  componentDidMount() {
+    fetch('/api/v1/categories.json')
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage)
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ categories: body.categories })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
   handleNameChange(event) {
@@ -38,17 +62,67 @@ class NewFloofContainer extends Component {
     this.setFormDetail('species', event.target.value )
   }
   handleCategoryChange(event) {
-    this.setFormDetail('category', event.target.value )
+    this.setFormDetail('category_id', event.target.value )
+  }
+
+  clearErrors() {
+    this.setState({
+      errors: []
+    })
+  }
+
+  validateName(){
+    if(this.state.floof.name === '') {
+      return ["Name can't be blank"]
+    }
+    else {
+      return []
+    }
+  }
+
+  validateJobTitle(){
+    if(this.state.floof.job_title === '') {
+      return ["Job Title can't be blank"]
+    }
+    else {
+      return []
+    }
+  }
+
+  validateSpecies(){
+    if(this.state.floof.species === '') {
+      return ["Species can't be blank"]
+    }
+    else {
+      return []
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    this.clearErrors()
+
+    let errors = this.validateName()
+    errors = errors.concat(this.validateSpecies())
+    errors = errors.concat(this.validateJobTitle())
+
+    if(errors.length === 0) {
+      this.handleFormPayload()
+    }
+    else {
+      this.setState({
+        errors: errors
+      })
+    }
+  }
+
+  handleFormPayload() {
     let formPayLoad = {
       floof: {
         name: this.state.floof.name,
         job_title: this.state.floof.job_title,
         current_employer: this.state.floof.current_employer,
-        category: this.state.floof.category,
+        category_id: this.state.floof.category_id,
         species: this.state.floof.species
       }
     }
@@ -58,21 +132,20 @@ class NewFloofContainer extends Component {
       body: JSON.stringify(formPayLoad),
       headers: { 'Content-Type': 'application/json' }
     })
-      .then(response => {
-        if (response.ok) {
-          return response
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage)
-          throw(error)
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ message: 'Floof added successfully' })
-        // this.props.history.push('/')
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`))
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage)
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      browserHistory.push(`/floofs/${body.floof.id}`)
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
   handleClear(event) {
@@ -81,9 +154,11 @@ class NewFloofContainer extends Component {
         name: '',
         job_title: '',
         current_employer: '',
-        category: '',
+        category_id: '',
         species: ''
-      }
+      },
+      message: '',
+      errors: []
     })
   }
 
@@ -93,43 +168,57 @@ class NewFloofContainer extends Component {
     newState[key] = value
     this.setState({
       floof: newState
-  })
-}
+    })
+  }
 
   render() {
-    // console.log(this.state.floof)
+    let errorList
+    if(this.state.errors.length > 0) {
+      let errorListItems = this.state.errors.map((error) => {
+        return <li>{error}</li>
+      })
+      errorList = (
+        <ul className="errors">
+          { errorListItems }
+        </ul>
+      )
+    }
+
     return(
-      <form onSubmit={ this.handleSubmit }>
-        <p>{ this.state.message }</p>
-        <FormField
-          label="Name"
-          value={ this.state.floof.name }
-          handleChange={ this.handleNameChange }
-        />
-        <FormField
-          label="Job Title"
-          value={ this.state.floof.job_title }
-          handleChange={ this.handleJobChange }
-        />
-        <FormField
-          label="Current Employer"
-          value={ this.state.floof.current_employer }
-          handleChange={ this.handleEmployerChange }
-        />
-        <FormField
-          label="Species"
-          value={ this.state.floof.species }
-          handleChange={ this.handleSpeciesChange }
-        />
-        <CategoryField
-          label="Category"
-          value={ this.state.floof.category }
-          handleChange={ this.handleCategoryChange }
-        />
-        <input
-          type='submit'
-        />
-      </form>
+      <div>
+        { errorList }
+        <form onSubmit={ this.handleSubmit }>
+          <p>{ this.state.message }</p>
+          <FormField
+            label="Name"
+            value={ this.state.floof.name }
+            handleChange={ this.handleNameChange }
+          />
+          <FormField
+            label="Job Title"
+            value={ this.state.floof.job_title }
+            handleChange={ this.handleJobChange }
+          />
+          <FormField
+            label="Current Employer"
+            value={ this.state.floof.current_employer }
+            handleChange={ this.handleEmployerChange }
+          />
+          <FormField
+            label="Species"
+            value={ this.state.floof.species }
+            handleChange={ this.handleSpeciesChange }
+          />
+          <CategoryField
+            label="Category"
+            value={ this.state.floof.category_id }
+            handleChange={ this.handleCategoryChange }
+            categories={ this.state.categories }
+          />
+          <button className='button' onClick={ this.handleSubmit }>Submit</button>
+        </form>
+        <button className='button' onClick={ this.handleClear }>Clear Form</button>
+      </div>
     )
   }
 }

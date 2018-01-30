@@ -29,6 +29,6 @@ categories.each do |category|
   Category.create(category)
 end
 
-reviews.each do |review|
-  Review.create!(review)
+floofers.each do |floof|
+  Floof.create(floof)
 end
