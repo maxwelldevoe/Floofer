@@ -1,0 +1,23 @@
+#review {
+  background-color: grey;
+  max-width: 500px;
+  border-radius: 10px;
+  border: solid;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+#review p {
+  color: white;
+  padding: 10px 10px;
+}
+
+
+#review-form {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#review-form input, select {
+  max-width: 750px;
+}

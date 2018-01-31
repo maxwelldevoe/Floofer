@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import FloofShowTile from '../components/FloofShowTile'
 import ReviewShowTile from '../components/ReviewShowTile'
+import ReviewFormTile from '../components/ReviewFormTile'
 
 class FloofShowContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      floof: {}
+      floof: {},
+      user: {}
     }
+
   }
 
   componentDidMount() {
@@ -28,11 +31,24 @@ class FloofShowContainer extends Component {
     .then(body => {
       this.setState({ floof: body.floof })
     })
+
+    fetch( `/api/v1/users`, { credentials: 'same-origin' })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ user: body.current_user})
+    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+
   }
 
 
+
   render() {
+
+    // console.log(this.state)
+
+    let currentUser = this.state.user;
+
 
     return(
       <div>
@@ -43,9 +59,19 @@ class FloofShowContainer extends Component {
         </div>
         <div>
           <ReviewShowTile
-          id={this.props.params.id}
+          id={ this.props.params.id }
+          currentUser={ currentUser }
+
           />
         </div>
+
+        <div>
+          <ReviewFormTile
+            id={ this.props.params.id }
+            currentUser={ currentUser }
+          />
+        </div>
+
       </div>
     )
   }

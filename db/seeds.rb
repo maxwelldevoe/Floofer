@@ -25,6 +25,22 @@ floofers = [
   {name: "Whiskey", job_title: "Demolition", category_id: 3, species: "Rhino"}
 ]
 
+
+reviews = [
+  {description: "This Floof is great!", rating: 5, upvotes: 5, downvotes: 2, user_id: 1, floof_id: 1},
+  {description: "This Floof is not great!", rating: 1, upvotes: 5, downvotes: 2, user_id: 1, floof_id: 1},
+  {description: "This Floof sucks", rating: 1, upvotes: 5, downvotes: 2, user_id: 1, floof_id: 1},
+  {description: "This Floof is amazing!", rating: 4, upvotes: 5, downvotes: 2, user_id: 1, floof_id: 1},
+  {description: "This Floof is greater!", rating: 4, upvotes: 5, downvotes: 2, user_id: 1, floof_id: 1},
+
+]
+
+
+
+floofers.each do |floof|
+  Floof.create(floof)
+end
+
 categories.each do |category|
   Category.create(category)
 end

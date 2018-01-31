@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import FloofShowContainer from './containers/FloofShowContainer'
 import FloofIndexContainer from './containers/FloofIndexContainer'
 import NewFloofContainer from './containers/NewFloofContainer'
+import ReviewFormTile from './components/ReviewFormTile'
 
 
 const App = (props) => {
