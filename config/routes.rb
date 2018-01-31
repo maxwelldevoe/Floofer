@@ -12,12 +12,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index]
       resources :categories, only: [:index]
-      resources :floofs, only: [:index, :show] do
+      resources :floofs, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show, :create, :edit, :update, :destroy]
       end
 
       resources :reviews, only: [:create, :index, :edit, :update, :destroy]
     end
+  end
 
   end
 

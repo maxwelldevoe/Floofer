@@ -1,5 +1,5 @@
-import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import React from 'react'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import FloofShowContainer from './containers/FloofShowContainer'
 import FloofIndexContainer from './containers/FloofIndexContainer'
