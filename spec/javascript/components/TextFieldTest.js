@@ -1,4 +1,4 @@
-import FormField from '../../../app/javascript/components/FormField'
+import TextField from '../../../app/javascript/components/TextField'
 
 describe('new floof form field', () => {
   let handleInput,
@@ -7,7 +7,7 @@ describe('new floof form field', () => {
   beforeEach(() => {
     handleInput = jasmine.createSpy('handleInput.spy')
     wrapper = mount(
-      <FormField
+      <TextField
         label='Name:'
         value='what state passes down'
         name='field'
