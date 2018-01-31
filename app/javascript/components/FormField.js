@@ -5,7 +5,8 @@ const FormField = (props) => {
     <label>{ props.label }
       <input
         type='text'
-        value= { props.value }
+        value={ props.value }
+        name={ props.name }
         onChange={ props.handleChange }
       />
     </label>

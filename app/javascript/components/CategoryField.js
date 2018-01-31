@@ -10,7 +10,7 @@ const CategoryField = (props) => {
   return(
     <div>
       <label>{ props.label }</label>
-      <select value={ props.value } onChange={ props.handleChange }>
+      <select name={ props.name } value={ props.value } onChange={ props.handleChange }>
         <option value=''></option>
         { optionElements }
       </select>

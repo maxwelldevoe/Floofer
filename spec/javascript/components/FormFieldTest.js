@@ -10,6 +10,7 @@ describe('new floof form field', () => {
       <FormField
         label='Name:'
         value='what state passes down'
+        name='field'
         handleChange={ handleInput }
       />
     )
@@ -23,6 +24,7 @@ describe('new floof form field', () => {
     expect(wrapper.find('input').props()).toEqual({
       type: 'text',
       value: 'what state passes down',
+      name: 'field',
       onChange: jasmine.any(Function)
     })
   })

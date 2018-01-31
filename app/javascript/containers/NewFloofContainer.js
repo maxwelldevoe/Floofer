@@ -16,19 +16,12 @@ class NewFloofContainer extends Component {
       },
       message: '',
       categories: [],
-      errors: []
+      errors: {}
     }
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleJobChange = this.handleJobChange.bind(this)
-    this.handleEmployerChange = this.handleEmployerChange.bind(this)
-    this.handleSpeciesChange = this.handleSpeciesChange.bind(this)
-    this.handleCategoryChange = this.handleCategoryChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClear = this.handleClear.bind(this)
-    this.validateName = this.validateName.bind(this)
-    this.validateJobTitle = this.validateJobTitle.bind(this)
-    this.validateSpecies = this.validateSpecies.bind(this)
-    this.clearErrors = this.clearErrors.bind(this)
+    this.validateField = this.validateField.bind(this)
   }
 
   componentDidMount() {
@@ -49,70 +42,33 @@ class NewFloofContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
-  handleNameChange(event) {
-    this.setFormDetail('name', event.target.value )
-  }
-  handleJobChange(event) {
-    this.setFormDetail('job_title', event.target.value )
-  }
-  handleEmployerChange(event) {
-    this.setFormDetail('current_employer', event.target.value )
-  }
-  handleSpeciesChange(event) {
-    this.setFormDetail('species', event.target.value )
-  }
-  handleCategoryChange(event) {
-    this.setFormDetail('category_id', event.target.value )
+  handleChange(event) {
+    let fieldName = event.target.name
+    let input = event.target.value
+    this.setFormDetail(fieldName, input)
   }
 
-  clearErrors() {
-    this.setState({
-      errors: []
-    })
-  }
-
-  validateName(){
-    if(this.state.floof.name === '') {
-      return ["Name can't be blank"]
+  validateField(fieldName, input) {
+    let formattedInput = fieldName.replace(/_/, " ")
+    if (input === '' || input === ' ') {
+      let newError = { [fieldName]: `You must provide a valid ${formattedInput}` }
+      this.setState({ errors: Object.assign(this.state.errors, newError)})
     }
     else {
-      return []
-    }
-  }
-
-  validateJobTitle(){
-    if(this.state.floof.job_title === '') {
-      return ["Job Title can't be blank"]
-    }
-    else {
-      return []
-    }
-  }
-
-  validateSpecies(){
-    if(this.state.floof.species === '') {
-      return ["Species can't be blank"]
-    }
-    else {
-      return []
+      let errorState = this.state.errors
+      delete errorState[fieldName]
+      this.setState({ errors: errorState })
     }
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.clearErrors()
 
-    let errors = this.validateName()
-    errors = errors.concat(this.validateSpecies())
-    errors = errors.concat(this.validateJobTitle())
-
-    if(errors.length === 0) {
+    this.validateField("name", this.state.floof.name)
+    this.validateField("job_title", this.state.floof.job_title)
+    this.validateField("species", this.state.floof.species)
+    if(Object.keys(this.state.errors).length === 0) {
       this.handleFormPayload()
-    }
-    else {
-      this.setState({
-        errors: errors
-      })
     }
   }
 
@@ -158,7 +114,7 @@ class NewFloofContainer extends Component {
         species: ''
       },
       message: '',
-      errors: []
+      errors: {}
     })
   }
 
@@ -172,47 +128,51 @@ class NewFloofContainer extends Component {
   }
 
   render() {
-    let errorList
-    if(this.state.errors.length > 0) {
-      let errorListItems = this.state.errors.map((error) => {
-        return <li>{error}</li>
+    console.log(this.state.errors)
+    let errorListItems;
+    let errorDiv;
+
+    if(Object.keys(this.state.errors).length > 0) {
+      errorListItems = Object.values(this.state.errors).map((error) => {
+        return <li key={error}>{error}</li>
       })
-      errorList = (
-        <ul className="errors">
-          { errorListItems }
-        </ul>
-      )
+      errorDiv = <div className="errors">{ errorListItems }</div>
     }
 
     return(
       <div>
-        { errorList }
+        { errorDiv }
         <form onSubmit={ this.handleSubmit }>
           <p>{ this.state.message }</p>
           <FormField
             label="Name"
             value={ this.state.floof.name }
-            handleChange={ this.handleNameChange }
+            name="name"
+            handleChange={ this.handleChange }
           />
           <FormField
             label="Job Title"
             value={ this.state.floof.job_title }
-            handleChange={ this.handleJobChange }
+            name="job_title"
+            handleChange={ this.handleChange }
           />
           <FormField
             label="Current Employer"
             value={ this.state.floof.current_employer }
-            handleChange={ this.handleEmployerChange }
+            name="current_employer"
+            handleChange={ this.handleChange }
           />
           <FormField
             label="Species"
             value={ this.state.floof.species }
-            handleChange={ this.handleSpeciesChange }
+            name="species"
+            handleChange={ this.handleChange }
           />
           <CategoryField
             label="Category"
             value={ this.state.floof.category_id }
-            handleChange={ this.handleCategoryChange }
+            name="category_id"
+            handleChange={ this.handleChange }
             categories={ this.state.categories }
           />
           <button className='button' onClick={ this.handleSubmit }>Submit</button>
