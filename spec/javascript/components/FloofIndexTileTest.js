@@ -17,11 +17,11 @@ describe('Floof Index Tile', () => {
   })
 
   it('should have a name within a <p>', () => {
-    expect(wrapper.find('p')).toIncludeText('Rover')
+    expect(wrapper.find('p').at(0)).toIncludeText('Rover')
   })
 
   it('should have a job within same <p>', () => {
-    expect(wrapper.find('p')).toIncludeText('Junior Web Developer')
+    expect(wrapper.find('p').at(1)).toIncludeText('Junior Web Developer')
   })
 
   it('should have an image within a <img>', () => {
