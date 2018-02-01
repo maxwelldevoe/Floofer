@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormField = (props) => {
+const TextField = (props) => {
   return(
     <label>{ props.label }
       <input
@@ -13,4 +13,4 @@ const FormField = (props) => {
   )
 }
 
-export default FormField
+export default TextField

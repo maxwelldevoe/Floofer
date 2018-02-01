@@ -1,59 +1,23 @@
-import React, { Component } from 'react'
-import ReviewTile from '../components/ReviewTile'
+import React from 'react'
 
-class ReviewShowTile extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      reviews: []
-    }
+const ReviewShowTile = (props) => {
+
+  let deleteButton
+
+  if (props.createdByUser === true) {
+    deleteButton = <button id="delete" data-id={ props.id } onClick={ props.handleDelete }>Delete</button>
   }
 
-  componentDidMount() {
-    let id = this.props.id
-    fetch(`/api/v1/floofs/${id}/reviews.json`)
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => {
-      return response.json()
-    })
-    .then(body => {
-      this.setState({ reviews: body })
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
-
-
-  render() {
-    let reviews = this.state.reviews;
-    let reviewArray;
-
-    reviewArray = reviews.map((review) => {
-      return(
-        <ReviewTile
-          description={review.description}
-          key={review.id}
-          id={review.id}
-          rating={review.rating}
-          user={review.user_id}
-        />
-      )
-    })
-
-    return(
-      <div>
-      <h2>Reviews:</h2>
-      {reviewArray}
+  return(
+    <div className="reviews">
+      <p id="rating">{ props.rating } stars</p>
+      <p>{ props.description }</p>
+      <p>user { props.user }</p>
+      <div className="buttons">
+        { deleteButton }
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default ReviewShowTile;

@@ -12,7 +12,7 @@ RSpec.describe Api::V1::CategoriesController, type: :controller do
       expect(response.content_type).to eq("application/json")
 
       expect(returned_json.length).to eq 1
-      
+
       expect(returned_json["categories"][0]["id"]).to eq first_category.id
       expect(returned_json["categories"][0]["name"]).to eq first_category.name
 
@@ -22,5 +22,4 @@ RSpec.describe Api::V1::CategoriesController, type: :controller do
       expect(returned_json["categories"][0]["floofs"][0]["species"]).to eq first_floof.species
     end
   end
-
 end

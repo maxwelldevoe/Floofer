@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import FormField from '../components/FormField'
+import TextField from '../components/TextField'
 import CategoryField from '../components/CategoryField'
 
 class NewFloofContainer extends Component {
@@ -18,10 +18,13 @@ class NewFloofContainer extends Component {
       categories: [],
       errors: {}
     }
+
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleClear = this.handleClear.bind(this)
     this.validateField = this.validateField.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleFormPayload = this.handleFormPayload.bind(this)
+    this.handleClear = this.handleClear.bind(this)
+    this.setFormDetail = this.setFormDetail.bind(this)
   }
 
   componentDidMount() {
@@ -128,7 +131,6 @@ class NewFloofContainer extends Component {
   }
 
   render() {
-    console.log(this.state.errors)
     let errorListItems;
     let errorDiv;
 
@@ -141,28 +143,42 @@ class NewFloofContainer extends Component {
 
     return(
       <div>
+
+        <div className="intro">
+          <p>
+            Please specify your job title, whether you are currently employed, and what type of work you are looking for.
+
+            <br /> If selected, a Hiring Partner will be in touch with you to discuss next steps.
+
+            <br /><br />
+            If you have any questions, please reach out to customersupport@floofer.org
+          </p>
+
+        </div>
+
         { errorDiv }
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ this.handleSubmit } className="form-data">
           <p>{ this.state.message }</p>
-          <FormField
+          <h1>Add a Floof</h1>
+          <TextField
             label="Name"
             value={ this.state.floof.name }
             name="name"
             handleChange={ this.handleChange }
           />
-          <FormField
+          <TextField
             label="Job Title"
             value={ this.state.floof.job_title }
             name="job_title"
             handleChange={ this.handleChange }
           />
-          <FormField
+          <TextField
             label="Current Employer"
             value={ this.state.floof.current_employer }
             name="current_employer"
             handleChange={ this.handleChange }
           />
-          <FormField
+          <TextField
             label="Species"
             value={ this.state.floof.species }
             name="species"
@@ -176,8 +192,8 @@ class NewFloofContainer extends Component {
             categories={ this.state.categories }
           />
           <button className='button' onClick={ this.handleSubmit }>Submit</button>
+          <button className='button' id="clear" onClick={ this.handleClear }>Clear Form</button>
         </form>
-        <button className='button' onClick={ this.handleClear }>Clear Form</button>
       </div>
     )
   }
