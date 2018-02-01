@@ -4,7 +4,6 @@ import FloofIndexTile from '../components/FloofIndexTile'
 const FloofCategoryTile = (props) => {
 
   let floofTileComponents = props.floofData.map((floof) => {
-    debugger
     return(
       <FloofIndexTile
         key={floof.id}
