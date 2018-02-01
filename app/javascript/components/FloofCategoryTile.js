@@ -22,5 +22,4 @@ const FloofCategoryTile = (props) => {
     </div>
   )
 }
-
-export default FloofCategoryTile
+export default FloofCategoryTile;
