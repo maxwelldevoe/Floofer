@@ -68,8 +68,39 @@ class ReviewsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  editReview(event) {
-    //editReviewHere
+  editReview(formData) {
+    let id = formData.reviewId
+    let formPayload = {
+      review: {
+        description: formData.description,
+        rating: formData.rating
+      }
+    }
+    fetch(`/api/v1/reviews/${id}.json`, {
+      method: 'PATCH',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formPayload)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let updatedReviews = this.state.reviews.filter(review => {
+        return review.id !== body.id
+      })
+      updatedReviews = updatedReviews.concat(body)
+
+      this.setState({ reviews: updatedReviews })
+    })
+    .catch(error => console.error(`Error in fetch patch: ${error.message}`))
   }
 
   deleteReview(event) {
@@ -101,11 +132,9 @@ class ReviewsContainer extends Component {
 
   render() {
     let reviews = this.state.reviews;
-    console.log(reviews)
     let reviewArray;
 
     let currentUser = this.props.currentUser;
-    console.log(currentUser)
     let createdByUser;
 
     if (reviews.length > 0) {
