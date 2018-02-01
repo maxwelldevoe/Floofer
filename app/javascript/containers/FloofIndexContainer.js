@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import SearchInput, {createFilter} from 'react-search-input'
+
 import FloofCategoryTile from '../components/FloofCategoryTile'
 
 class FloofIndexContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sortedFloofs: []
+      sortedFloofs: [],
+      searchTerm: ''
     }
+    this.searchHandler = this.searchHandler.bind(this)
   }
 
   componentDidMount() {
@@ -23,10 +27,15 @@ class FloofIndexContainer extends Component {
       .then(response => {
         return response.json()
       })
-      .then(body => {
-        this.setState({ sortedFloofs: body.categories })
-      })
+      .then(body =>
+        this.setState({ sortedFloofs: body.categories }),
+      )
       .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  searchHandler(event) {
+    let searchWord = event
+    this.setState({searchTerm: searchWord});
   }
 
   render() {
@@ -34,14 +43,20 @@ class FloofIndexContainer extends Component {
     let floofCategoryTileComponents;
 
     if (floofData !== []) {
+      floofData = this.state.sortedFloofs.filter((floof) => {
+        return floof.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) != -1;
+      })
+
       floofCategoryTileComponents = floofData.map((category) => {
         if (category.floofs.length !== 0) {
+
           return(
-            <FloofCategoryTile
-              key={ category.id }
-              category={ category.name }
-              floofData={ category.floofs }
-            />
+
+              <FloofCategoryTile
+                key={ category.id }
+                category={ category.name }
+                floofData={ category.floofs }
+              />
           )
         }
       })
@@ -49,7 +64,7 @@ class FloofIndexContainer extends Component {
 
     return(
       <div>
-
+        <SearchInput className="search-input" value={this.state.searchTerm} onChange={this.searchHandler} />
 
         <div className="intro">
 
@@ -65,11 +80,6 @@ class FloofIndexContainer extends Component {
           </p>
 
         </div>
-
-
-
-
-
         {floofCategoryTileComponents}
       </div>
     )
