@@ -52,6 +52,18 @@ class FloofShowContainer extends Component {
 
     return(
       <div>
+
+
+        <div className="intro">
+          <p>
+            If you would like to review this Floof, please scroll down to the bottom of the page and enter your information in the 'Add Review' form.
+          </p>
+
+        </div>
+
+
+
+
         <div>
           <FloofShowTile
           floofData={ this.state.floof }

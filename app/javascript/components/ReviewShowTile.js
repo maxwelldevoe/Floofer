@@ -37,6 +37,7 @@ class ReviewShowTile extends Component {
 
     reviewArray = reviews.map((review) => {
       return(
+
         <ReviewTile
           description={review.description}
           key={review.id}
@@ -49,7 +50,7 @@ class ReviewShowTile extends Component {
 
     return(
       <div>
-      <h2>Reviews:</h2>
+      <h2>Reviews</h2>
       {reviewArray}
       </div>
     )

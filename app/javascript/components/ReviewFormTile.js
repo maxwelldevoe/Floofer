@@ -88,11 +88,11 @@ class ReviewFormTile extends Component {
 
           <select name="rating" onChange={this.handleRating} value={this.state.review.rating}>
             <option></option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="1">☆</option>
+            <option value="2">☆☆</option>
+            <option value="3">☆☆☆</option>
+            <option value="4">☆☆☆☆</option>
+            <option value="5">☆☆☆☆☆</option>
           </select>
 
 
@@ -105,7 +105,7 @@ class ReviewFormTile extends Component {
             name='description'
           />
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit"/>
 
         </form>
       </div>

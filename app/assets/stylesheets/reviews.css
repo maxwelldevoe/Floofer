@@ -1,23 +1,94 @@
-#review {
-  background-color: grey;
-  max-width: 500px;
-  border-radius: 10px;
-  border: solid;
-  margin-left: 20px;
-  margin-bottom: 5px;
+
+/* main review div and text */
+
+.reviews {
+  background-color: #F0F8FF;
+  padding-left: 50px;
+  margin-bottom: 10px;
 }
 
-#review p {
+.reviews p {
+  font-size: 25px;
+  color: teal;
+}
+
+#rating {
+  font-size: 50px;
+  display: inline-block;
+  color: black;
+  font-style: italic;
+}
+
+
+h2 {
+  color: #87CEFA;
+  font-size: 40px;
+  text-decoration: underline;
+  margin-left: 10px;
+  margin-top: 50px;
+  padding-left: 50px;
+}
+
+
+/* review forms */
+
+#review-form h2 {
+  text-decoration: none;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+  font-family: 'Roboto', sans-serif;
   color: white;
-  padding: 10px 10px;
-}
+  -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
 
+}
 
 #review-form {
-  margin-top: 20px;
-  margin-left: 20px;
+  background-color: #87CEFA;
+  padding: 20px 20px;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-left: 50px;
+  max-width: 600px;
+  margin-bottom: 20px;
+
 }
 
-#review-form input, select {
-  max-width: 750px;
+#review-form select {
+  font-size: 25px;
+  height: 50px;
+  width: 500px;
+}
+
+#review-form label {
+  font-size: 18px;
+  color: black;
+  -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  display: block;
+}
+
+
+
+/* inputs */
+
+input[type="text"] {
+  width: 500px;
+}
+
+
+input[type="submit"] {
+  font-size: 20px;
+  background-color: white;
+  color: teal;
+  border-radius: 10px;
+  margin-left: 5px;
+  font-weight: bold;
+  padding: 15px 15px;
+}
+
+input[type="submit"]:hover {
+  color: white;
+  background-color: teal;
 }
