@@ -25,22 +25,3 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
   end
 end
-
-
-
-# it "should return a list of all the categories and their associated floofs" do
-#   get :index
-#   returned_json = JSON.parse(response.body)
-#   expect(response.status).to eq 200
-#   expect(response.content_type).to eq("application/json")
-#
-#   expect(returned_json.length).to eq 1
-#
-#   expect(returned_json["categories"][0]["id"]).to eq first_category.id
-#   expect(returned_json["categories"][0]["name"]).to eq first_category.name
-#
-#   expect(returned_json["categories"][0]["floofs"][0]["name"]).to eq first_floof.name
-#   expect(returned_json["categories"][0]["floofs"][0]["job_title"]).to eq first_floof.job_title
-#   expect(returned_json["categories"][0]["floofs"][0]["current_employer"]).to eq first_floof.current_employer
-#   expect(returned_json["categories"][0]["floofs"][0]["species"]).to eq first_floof.species
-# end
