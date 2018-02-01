@@ -49,6 +49,27 @@ class FloofIndexContainer extends Component {
 
     return(
       <div>
+
+
+        <div className="intro">
+
+          <p>
+            Hello,<br /><br />
+
+            Floofer is here to help you find the best pets for your company's needs. In order to view a candidate and his or her skills, please click on a Floof's picture for more information. On that page, you may also see each current or prior employer's reviews on the respective Floof.
+            <br /><br />
+            If you are a Floof looking for a new job, please skip to the 'Add Floof' page in the navigation.
+            <br /><br />
+            Regards,<br />
+            The Floofer Team
+          </p>
+
+        </div>
+
+
+
+
+
         {floofCategoryTileComponents}
       </div>
     )

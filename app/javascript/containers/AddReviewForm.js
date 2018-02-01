@@ -75,7 +75,7 @@ class AddReviewForm extends Component {
     }
 
     return(
-      <div>
+      <div id="review-form">
         <h2>Add A Review</h2>
         { errorDiv }
         <form>

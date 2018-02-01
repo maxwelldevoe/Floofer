@@ -9,10 +9,10 @@ const ReviewShowTile = (props) => {
   }
 
   return(
-    <div>
+    <div className="reviews">
+      <p id="rating">{ props.rating } stars</p>
       <p>{ props.description }</p>
-      <p>{ props.rating }</p>
-      <p>{ props.user }</p>
+      <p>user { props.user }</p>
       <div className="buttons">
         { deleteButton }
       </div>

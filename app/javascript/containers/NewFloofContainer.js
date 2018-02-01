@@ -143,9 +143,23 @@ class NewFloofContainer extends Component {
 
     return(
       <div>
+
+        <div className="intro">
+          <p>
+            Please specify your job title, whether you are currently employed, and what type of work you are looking for.
+
+            <br /> If selected, a Hiring Partner will be in touch with you to discuss next steps.
+
+            <br /><br />
+            If you have any questions, please reach out to customersupport@floofer.org
+          </p>
+
+        </div>
+
         { errorDiv }
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ this.handleSubmit } className="form-data">
           <p>{ this.state.message }</p>
+          <h1>Add a Floof</h1>
           <TextField
             label="Name"
             value={ this.state.floof.name }
@@ -178,8 +192,8 @@ class NewFloofContainer extends Component {
             categories={ this.state.categories }
           />
           <button className='button' onClick={ this.handleSubmit }>Submit</button>
+          <button className='button' id="clear" onClick={ this.handleClear }>Clear Form</button>
         </form>
-        <button className='button' onClick={ this.handleClear }>Clear Form</button>
       </div>
     )
   }
