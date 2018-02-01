@@ -1,3 +1,3 @@
 class FloofSerializer < ActiveModel::Serializer
-  attributes :id, :name, :job_title, :current_employer, :species
+  attributes :id, :name, :job_title, :current_employer, :species, :photo
 end
