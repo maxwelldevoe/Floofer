@@ -12,7 +12,7 @@ describe('floof show tile', () => {
       current_employer: "Proctor & Gamble",
       category: "Law",
       species: "Iguana",
-      picture: 'http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
+      photo: 'http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
     }
     wrapper = mount(
       <FloofShowTile
