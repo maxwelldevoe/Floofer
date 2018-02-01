@@ -7,11 +7,6 @@ class Api::V1::ReviewsController < ApplicationController
     render json: reviews
   end
 
-  def show
-    review = Review.find(params[:id])
-    render json: review
-  end
-
   def create
     review = Review.new(review_params)
     if review.save
@@ -22,7 +17,7 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   private
-  
+
     def review_params
       params.require(:review).permit(:description, :rating, :floof_id, :user_id)
     end

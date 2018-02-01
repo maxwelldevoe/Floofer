@@ -18,10 +18,13 @@ class NewFloofContainer extends Component {
       categories: [],
       errors: {}
     }
+
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleClear = this.handleClear.bind(this)
     this.validateField = this.validateField.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleFormPayload = this.handleFormPayload.bind(this)
+    this.handleClear = this.handleClear.bind(this)
+    this.setFormDetail = this.setFormDetail.bind(this)
   }
 
   componentDidMount() {
@@ -128,7 +131,6 @@ class NewFloofContainer extends Component {
   }
 
   render() {
-    console.log(this.state.errors)
     let errorListItems;
     let errorDiv;
 

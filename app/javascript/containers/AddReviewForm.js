@@ -64,24 +64,38 @@ class AddReviewForm extends Component {
   }
 
   render() {
-    console.log(this.state)
+    let errorListItems;
+    let errorDiv;
+
+    if(Object.keys(this.state.errors).length > 0) {
+      errorListItems = Object.values(this.state.errors).map((error) => {
+        return <li key={error}>{error}</li>
+      })
+      errorDiv = <div className="errors">{ errorListItems }</div>
+    }
+
     return(
-      <form>
-        <TextField
-          label="Description"
-          value={ this.state.description }
-          name="description"
-          handleChange={ this.handleChange }
-        />
-        <RatingField
-          label="Rating"
-          value={ this.state.rating }
-          name="rating"
-          handleChange={ this.handleChange }
-          ratings={ this.state.ratings }
-        />
-        <button className='button' onClick={ this.handleSubmit }>Submit</button>
-      </form>
+      <div>
+        <h2>Add A Review</h2>
+        { errorDiv }
+        <form>
+          <TextField
+            label="Description"
+            value={ this.state.description }
+            name="description"
+            handleChange={ this.handleChange }
+          />
+          <RatingField
+            label="Rating"
+            value={ this.state.rating }
+            name="rating"
+            handleChange={ this.handleChange }
+            ratings={ this.state.ratings }
+          />
+          <button className='button' id='submit' onClick={ this.handleSubmit }>Submit</button>
+          <button className='button' id='clear' onClick={ this.handleClearForm }>Clear</button>
+        </form>
+      </div>
     )
   }
 }
