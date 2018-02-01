@@ -7,7 +7,7 @@ const FloofIndexTile = (props) => {
       <span className='floof_tile'>
         <img src={ props.picture } alt='Floof Photo' />
         <p>{ props.name }</p>
-        { props.job }
+        <p>{ props.job }</p>
       </span>
     </Link>
   )

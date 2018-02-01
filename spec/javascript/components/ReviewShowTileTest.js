@@ -43,20 +43,20 @@ describe('Review show tile', () => {
     )
   })
 
-  it('should have a description within <p>', () => {
-    expect(notCreatedByUserWrapper.find('p').at(0)).toHaveText("Changed my life. Peed the carpet. Ate my food.")
-    expect(createdByUserWrapper.find('p').at(0)).toHaveText("Changed my life. Peed the carpet. Ate my food.")
-
+  it('should have a rating with <p>', () => {
+    expect(notCreatedByUserWrapper.find('p').at(0)).toHaveText("2 stars")
+    expect(createdByUserWrapper.find('p').at(0)).toHaveText("2 stars")
   })
 
-  it('should have a rating with <p>', () => {
-    expect(notCreatedByUserWrapper.find('p').at(1)).toHaveText("2")
-    expect(createdByUserWrapper.find('p').at(1)).toHaveText("2")
+  it('should have a description within <p>', () => {
+    expect(notCreatedByUserWrapper.find('p').at(1)).toHaveText("Changed my life. Peed the carpet. Ate my food.")
+    expect(createdByUserWrapper.find('p').at(1)).toHaveText("Changed my life. Peed the carpet. Ate my food.")
+
   })
 
   it('should have a user id with <p>', () => {
-    expect(notCreatedByUserWrapper.find('p').at(2)).toHaveText("1")
-    expect(createdByUserWrapper.find('p').at(2)).toHaveText("1")
+    expect(notCreatedByUserWrapper.find('p').at(2)).toHaveText("user 1")
+    expect(createdByUserWrapper.find('p').at(2)).toHaveText("user 1")
   })
 
   it('should have a delete button if createdByUser is true', () => {

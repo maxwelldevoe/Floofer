@@ -12,7 +12,7 @@ const ReviewShowTile = (props) => {
     <div className="reviews">
       <p id="rating">{ props.rating } stars</p>
       <p>{ props.description }</p>
-      <p>user id # { props.user }</p>
+      <p>user { props.user }</p>
       <div className="buttons">
         { deleteButton }
       </div>
