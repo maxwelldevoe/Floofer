@@ -24,7 +24,6 @@ class ReviewShowTile extends Component {
   }
 
   render() {
-    console.log(this.state.showEditForm)
     let deleteButton, editButton
     if (this.props.createdByUser === true) {
       deleteButton = <button id="delete" data-id={ this.props.id } onClick={ this.props.handleDelete }>Delete</button>
