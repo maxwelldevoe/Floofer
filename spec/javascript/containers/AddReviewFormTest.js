@@ -13,6 +13,7 @@ describe('AddReviewForm', () => {
     spyOn(AddReviewForm.prototype, 'handleChange').and.callThrough();
     spyOn(AddReviewForm.prototype, 'handleSubmit').and.callThrough();
     spyOn(AddReviewForm.prototype, 'handleClearForm').and.callThrough();
+    spyOn(AddReviewForm.prototype, 'validateField').and.callThrough();
 
     handleAddNewReview = jasmine.createSpy('handleAddNewReview spy');
     wrapper = mount(
@@ -107,6 +108,8 @@ describe('AddReviewForm', () => {
 
       wrapper.find('button#submit').simulate('click');
       expect(handleAddNewReview).toHaveBeenCalled()
+      expect(AddReviewForm.prototype.validateField).toHaveBeenCalled();
+      expect(AddReviewForm.prototype.handleSubmit).toHaveBeenCalled();
     });
 
     it('should reset state after passing the form load up to the ReviewsContainer', () => {
@@ -135,6 +138,7 @@ describe('AddReviewForm', () => {
       })
 
       wrapper.find('button#submit').simulate('click');
+      expect(AddReviewForm.prototype.validateField).toHaveBeenCalled();
       expect(wrapper.find('li').text()).toEqual('You must provide a valid description')
     });
 
@@ -147,6 +151,7 @@ describe('AddReviewForm', () => {
       })
 
       wrapper.find('button#submit').simulate('click');
+      expect(AddReviewForm.prototype.validateField).toHaveBeenCalled();
       expect(wrapper.find('li').text()).toEqual('You must provide a valid rating')
     });
   });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReviewTile from '../components/ReviewTile'
+import ReviewShowTile from '../components/ReviewShowTile'
 import AddReviewForm from '../containers/AddReviewForm'
 
 class ReviewsContainer extends Component {
@@ -10,6 +10,7 @@ class ReviewsContainer extends Component {
     }
 
     this.addReview = this.addReview.bind(this)
+    this.deleteReview = this.deleteReview.bind(this)
   }
 
   componentDidMount() {
@@ -66,19 +67,58 @@ class ReviewsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteReview(event) {
+    let id = event.currentTarget.attributes["data-id"].value
+    fetch(`/api/v1/reviews/${id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(body => {
+      let newReviews = this.state.reviews.filter(review => {
+        return review.id !== body.id
+      })
+      this.setState({ reviews: newReviews })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   render() {
     let reviews = this.state.reviews;
     let reviewArray;
 
+    let currentUser = this.props.currentUser;
+    let createdByUser;
+
     if (reviews.length > 0) {
       reviewArray = reviews.map((review) => {
+
+        if (review.user_id === currentUser.id) {
+          createdByUser = true
+        } else {
+          createdByUser = false
+        }
+
         return(
-          <ReviewTile
+          <ReviewShowTile
             description={review.description}
             key={review.id}
             id={review.id}
             rating={review.rating}
             user={review.user_id}
+            createdByUser={createdByUser}
+            handleDelete={this.deleteReview}
           />
         )
       })
