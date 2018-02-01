@@ -10,7 +10,7 @@ const FloofCategoryTile = (props) => {
         id={floof.id}
         name={floof.name}
         job={floof.job_title}
-        picture={floof.picture}
+        photo={floof.photo}
       />
     )
   })
@@ -22,5 +22,4 @@ const FloofCategoryTile = (props) => {
     </div>
   )
 }
-
-export default FloofCategoryTile
+export default FloofCategoryTile;

@@ -11,7 +11,7 @@ describe('Floof Index Tile', () => {
         id={1}
         name='Rover'
         job='Junior Web Developer'
-        picture='http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
+        photo='http://mymagicdog.com/wp-content/uploads/2016/06/dog-typing-2.jpg'
       />
     )
   })
