@@ -29,6 +29,25 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     end
   end
 
+  describe "GET#show" do
+    it "should return the specified review" do
+
+      get :show, params: { id: first_review.id }
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(returned_json.length).to eq 9
+
+      expect(returned_json["id"]).to eq first_review.id
+      expect(returned_json["description"]).to eq first_review.description
+      expect(returned_json["rating"]).to eq first_review.rating
+      expect(returned_json["user_id"]).to eq first_review.user_id
+      expect(returned_json["floof_id"]).to eq first_review.floof_id
+    end
+  end
+
   describe "POST#create" do
     it "should create a new review" do
       review_to_be = {review: { description: "It mimics me!", rating: 5, user_id: first_user.id, floof_id: first_floof.id }}
@@ -63,7 +82,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     end
   end
 
-  describe "DELETE#Destroy" do
+  describe "DELETE#destroy" do
     it "should delete the specified review" do
       prev_count = first_floof.reviews.count
       delete(:destroy, params: { id: second_review.id })
@@ -82,6 +101,23 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(returned_json["rating"]).to eq second_review.rating
       expect(returned_json["user_id"]).to eq second_review.user_id
       expect(returned_json["floof_id"]).to eq second_review.floof_id
+    end
+  end
+
+  describe "PATCH#update" do
+    it "updates the review in question and returns it's new information" do
+      new_description = { description: "It mimics me!" }
+      patch(:update, params: { id: first_review.id, review: new_description })
+
+      returned_json = JSON.parse(response.body)
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(returned_json["id"]).to eq first_review.id
+      expect(returned_json["description"]).to eq new_description[:description]
+      expect(returned_json["rating"]).to eq first_review.rating
+      expect(returned_json["user_id"]).to eq first_review.user_id
+      expect(returned_json["floof_id"]).to eq first_review.floof_id
     end
   end
 
