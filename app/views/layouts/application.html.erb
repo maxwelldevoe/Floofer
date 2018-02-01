@@ -20,6 +20,7 @@
       <section class="top-bar-section">
         <ul class="right">
           <%- if current_user -%>
+          <%= image_tag("https://s3.amazonaws.com/floofr/#{current_user.avatar.thumb.path}", :alt=> 'pic') %>
             <li class="has-dropdown" id="dropdown">
               <a href="#">User Actions</a>
               <ul class="dropdown">
