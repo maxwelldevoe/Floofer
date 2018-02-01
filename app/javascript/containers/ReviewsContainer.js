@@ -10,6 +10,7 @@ class ReviewsContainer extends Component {
     }
 
     this.addReview = this.addReview.bind(this)
+    this.editReview = this.editReview.bind(this)
     this.deleteReview = this.deleteReview.bind(this)
   }
 
@@ -67,6 +68,10 @@ class ReviewsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  editReview(event) {
+    //editReviewHere
+  }
+
   deleteReview(event) {
     let id = event.currentTarget.attributes["data-id"].value
     fetch(`/api/v1/reviews/${id}`, {
@@ -96,17 +101,25 @@ class ReviewsContainer extends Component {
 
   render() {
     let reviews = this.state.reviews;
+    console.log(reviews)
     let reviewArray;
 
     let currentUser = this.props.currentUser;
+    console.log(currentUser)
     let createdByUser;
 
     if (reviews.length > 0) {
       reviewArray = reviews.map((review) => {
 
-        if (review.user_id === currentUser.id) {
-          createdByUser = true
-        } else {
+        if (currentUser) {
+          if (review.user_id === currentUser.id) {
+            createdByUser = true
+          }
+          else {
+            createdByUser = false
+          }
+        }
+        else {
           createdByUser = false
         }
 
@@ -119,6 +132,7 @@ class ReviewsContainer extends Component {
             user={review.user_id}
             createdByUser={createdByUser}
             handleDelete={this.deleteReview}
+            handleEdit={this.editReview}
           />
         )
       })
