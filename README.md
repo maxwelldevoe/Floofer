@@ -6,7 +6,7 @@
 
 Our App allows a user to create a pet available for hire and browse existing pets. A user may also leave a review on each pet's show page and delete or edit each review. A user must be logged in so a sample login is provided below.
 
-Team Members:
+# Team Members:
 
   * Max Devoe
   * Andrew Pepper-Anderson
@@ -14,7 +14,7 @@ Team Members:
   * Charlotte Smith
   * Yuliya Zhak
 
-Installation
+# Installation
 
 ```
 
@@ -27,7 +27,7 @@ rake db:seed
 
 ```
 
-Test Suite
+# Test Suite
 
 ```
 rake
@@ -38,16 +38,7 @@ npm test
 
 Then navigate to http://localhost:3000 in your browser.
 
-Sample login:
+# Sample login:
   username:
   password:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
