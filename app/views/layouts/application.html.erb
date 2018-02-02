@@ -20,7 +20,13 @@
       <section class="top-bar-section">
         <ul class="right">
           <%- if current_user -%>
-          <%= image_tag("https://s3.amazonaws.com/floofr/#{current_user.avatar.thumb.path}", :alt=> 'pic') %>
+            <% if !current_user.avatar.path.nil? %>
+              <% if current_user.avatar.path.split("/").first == "uploads" %>
+                <img id="avatar" src="https://s3.amazonaws.com/floofr/uploads/user/avatar/<%= "#{current_user.id}" %>/<%= "#{current_user.avatar.path.split("/").last}" %>" alt="Avatar" />
+              <% else %>
+                <img id="avatar" src="<%= "#{current_user.avatar.path}" %>" alt="Avatar" />
+              <% end %>
+            <% end %>
             <li class="has-dropdown" id="dropdown">
               <a href="#">User Actions</a>
               <ul class="dropdown">

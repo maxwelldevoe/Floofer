@@ -10,6 +10,7 @@ class ReviewsContainer extends Component {
     }
 
     this.addReview = this.addReview.bind(this)
+    this.editReview = this.editReview.bind(this)
     this.deleteReview = this.deleteReview.bind(this)
   }
 
@@ -67,6 +68,41 @@ class ReviewsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  editReview(formData) {
+    let id = formData.reviewId
+    let formPayload = {
+      review: {
+        description: formData.description,
+        rating: formData.rating
+      }
+    }
+    fetch(`/api/v1/reviews/${id}.json`, {
+      method: 'PATCH',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formPayload)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let updatedReviews = this.state.reviews.filter(review => {
+        return review.id !== body.id
+      })
+      updatedReviews = updatedReviews.concat(body)
+
+      this.setState({ reviews: updatedReviews })
+    })
+    .catch(error => console.error(`Error in fetch patch: ${error.message}`))
+  }
+
   deleteReview(event) {
     let id = event.currentTarget.attributes["data-id"].value
     fetch(`/api/v1/reviews/${id}`, {
@@ -104,9 +140,15 @@ class ReviewsContainer extends Component {
     if (reviews.length > 0) {
       reviewArray = reviews.map((review) => {
 
-        if (review.user_id === currentUser.id) {
-          createdByUser = true
-        } else {
+        if (currentUser) {
+          if (review.user_id === currentUser.id) {
+            createdByUser = true
+          }
+          else {
+            createdByUser = false
+          }
+        }
+        else {
           createdByUser = false
         }
 
@@ -119,6 +161,7 @@ class ReviewsContainer extends Component {
             user={review.user_id}
             createdByUser={createdByUser}
             handleDelete={this.deleteReview}
+            handleEdit={this.editReview}
           />
         )
       })

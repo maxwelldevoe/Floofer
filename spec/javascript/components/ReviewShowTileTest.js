@@ -16,6 +16,7 @@ describe('Review show tile', () => {
       downvotes: 11
     }
 
+    spyOn(ReviewShowTile.prototype, 'toggleEditForm')
     handleDeleteSpy = jasmine.createSpy('handleDelete spy');
 
     notCreatedByUserWrapper = mount(
@@ -77,4 +78,15 @@ describe('Review show tile', () => {
     createdByUserWrapper.find('button#delete').simulate('click');
     expect(handleDeleteSpy).toHaveBeenCalled()
   })
+
+  it('should have an edit button if createdByUser is true', () => {
+    expect(createdByUserWrapper.find('button#edit')).toHaveText("Edit")
+    expect(notCreatedByUserWrapper.find('button#edit')).toBeEmpty();
+  })
+
+  it('should toggle the edit state when the edit button is clicked', () => {
+    createdByUserWrapper.find('button#edit').simulate('click');
+    expect(ReviewShowTile.prototype.toggleEditForm).toHaveBeenCalled();
+  })
+
 })

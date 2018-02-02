@@ -98,7 +98,22 @@ input[type="text"] {
   margin-top: 10px;
 }
 
+#edit {
+  font-size: 20px;
+  background-color: teal;
+  color: white;
+  border-radius: 10px;
+  margin-left: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 #delete:hover {
+  color: teal;
+  background-color: white;
+}
+
+#edit:hover {
   color: teal;
   background-color: white;
 }

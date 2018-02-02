@@ -1,23 +1,63 @@
-import React from 'react'
+import React, { Component } from 'react'
+import EditReviewForm from '../containers/EditReviewForm'
 
-const ReviewShowTile = (props) => {
+class ReviewShowTile extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showEditForm: false
+    }
 
-  let deleteButton
-
-  if (props.createdByUser === true) {
-    deleteButton = <button id="delete" data-id={ props.id } onClick={ props.handleDelete }>Delete</button>
+    this.toggleEditForm = this.toggleEditForm.bind(this)
   }
 
-  return(
-    <div className="reviews">
-      <p id="rating">{ props.rating } stars</p>
-      <p>{ props.description }</p>
-      <p>user { props.user }</p>
-      <div className="buttons">
-        { deleteButton }
+  toggleEditForm(event) {
+    event.preventDefault()
+    let showForm = this.state.showEditForm
+
+    if (showForm === true) {
+      this.setState({ showEditForm: false })
+    }
+    else {
+      this.setState({ showEditForm: true })
+    }
+  }
+
+  render() {
+    let deleteButton, editButton
+    if (this.props.createdByUser === true) {
+      deleteButton = <button id="delete" data-id={ this.props.id } onClick={ this.props.handleDelete }>Delete</button>
+      editButton = <button id="edit" onClick={ this.toggleEditForm }>Edit</button>
+    }
+
+    let editFormVar
+    if (this.state.showEditForm === true) {
+      editFormVar =
+        <EditReviewForm
+          editReview={this.props.handleEdit}
+          reviewId={this.props.id}
+          closeForm={this.toggleEditForm}
+        />
+    }
+    else {
+      editFormVar = ""
+    }
+
+    return(
+      <div className="reviews">
+        <p id="rating">{ this.props.rating } stars</p>
+        <p>{ this.props.description }</p>
+        <p>user { this.props.user }</p>
+        <div className="buttons">
+          { deleteButton }
+          { editButton }
+        </div>
+        <div className="editForm">
+          { editFormVar }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default ReviewShowTile;

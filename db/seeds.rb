@@ -6,31 +6,31 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #
-# categories = [
-#   {name: "Business"},
-#   {name: "Healthcare"},
-#   {name: "Construction"},
-#   {name: "Technology"},
-#   {name: "Law"},
-#   {name: "Entertainment"},
-#   {name: "Government"}
-# ]
-#
-#
-# floofers = [
-#   {name: "Watson", job_title: "Sushi Chef", current_employer: "Kobe's", category_id: 6, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/LAUNCHER-watson_zpspkmpgy7i.png"},
-#   {name: "Geoffrey", job_title: "CFO", current_employer: "Bank of America", category_id: 1, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/LAUNCHER-geoffrey_zpsy8znwdfq.jpg"},
-#   {name: "Bill", job_title: "Banker", current_employer: "Smith & Sons", category_id: 1, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/tiecat-2_zpsbanzw7si.png"},
-#   {name: "Princess", job_title: "Socialite", current_employer: "Hollywood", category_id: 6, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/dog-sweater_zpscrgz26qz.jpg"},
-#   {name: "Spot", job_title: "Radiologist", current_employer: "Mass Gen", category_id: 2, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/bowtie-bulldog_zpseijusezj.jpg"},
-#   {name: "Whiskey", job_title: "Demolition", category_id: 3, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/cat-in-tie_zpscbu3jzlc.jpg"},
-#   {name: "Melpomene", job_title: "Digger", current_employer: "Boston Construction", category_id: 3, species: "Tarantula", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/LAUNCHER-melpomene_zpskgpj4qpb.jpg"},
-#   {name: "Ian", job_title: "Artist", current_employer: "Louvre", category_id: 6, species: "Bird", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/2C6A029800000578-0-image-a-34_1442480995620_zpsuusyv8os.jpg"},
-#   {name: "Travis", job_title: "Project Manager", current_employer: "Smith & Sons", category_id: 4, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/183ea6e8fee892b456e97f4a8a494f61--pet-clothes-dog-toys_zpsnejb5hqs.jpg"},
-#   {name: "Fluffy", job_title: "Musician", current_employer: "Hollywood", category_id: 6, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/60-spooky-and-cute-halloween-costumes-for-pets-designbump-cute-little-dog-costumes-l-bd2948d786427c40_zps77uwts0v.jpg"},
-#   {name: "Chester", job_title: "Brain Surgeon", current_employer: "Mass Gen", category_id: 2, species: "Iguana", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/JaneIguana_zpszksisyii.jpg"},
-#   {name: "Jeeves", job_title: "Teller", category_id: 1, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/cat-business-man-in-suit-funny_zpsusogxmpc.jpg"}
-# ]
+categories = [
+  {name: "Business"},
+  {name: "Healthcare"},
+  {name: "Construction"},
+  {name: "Technology"},
+  {name: "Law"},
+  {name: "Entertainment"},
+  {name: "Government"}
+]
+
+
+floofers = [
+  {name: "Watson", job_title: "Sushi Chef", current_employer: "Kobe's", category_id: 6, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/LAUNCHER-watson_zpspkmpgy7i.png"},
+  {name: "Geoffrey", job_title: "CFO", current_employer: "Bank of America", category_id: 1, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/LAUNCHER-geoffrey_zpsy8znwdfq.jpg"},
+  {name: "Bill", job_title: "Banker", current_employer: "Smith & Sons", category_id: 1, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/tiecat-2_zpsbanzw7si.png"},
+  {name: "Princess", job_title: "Socialite", current_employer: "Hollywood", category_id: 6, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/dog-sweater_zpscrgz26qz.jpg"},
+  {name: "Spot", job_title: "Radiologist", current_employer: "Mass Gen", category_id: 2, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/bowtie-bulldog_zpseijusezj.jpg"},
+  {name: "Whiskey", job_title: "Demolition", category_id: 3, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/cat-in-tie_zpscbu3jzlc.jpg"},
+  {name: "Melpomene", job_title: "Digger", current_employer: "Boston Construction", category_id: 3, species: "Tarantula", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/LAUNCHER-melpomene_zpskgpj4qpb.jpg"},
+  {name: "Ian", job_title: "Artist", current_employer: "Louvre", category_id: 6, species: "Bird", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/2C6A029800000578-0-image-a-34_1442480995620_zpsuusyv8os.jpg"},
+  {name: "Travis", job_title: "Project Manager", current_employer: "Smith & Sons", category_id: 4, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/183ea6e8fee892b456e97f4a8a494f61--pet-clothes-dog-toys_zpsnejb5hqs.jpg"},
+  {name: "Fluffy", job_title: "Musician", current_employer: "Hollywood", category_id: 6, species: "Dog", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/60-spooky-and-cute-halloween-costumes-for-pets-designbump-cute-little-dog-costumes-l-bd2948d786427c40_zps77uwts0v.jpg"},
+  {name: "Chester", job_title: "Brain Surgeon", current_employer: "Mass Gen", category_id: 2, species: "Iguana", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/JaneIguana_zpszksisyii.jpg"},
+  {name: "Jeeves", job_title: "Teller", category_id: 1, species: "Cat", photo: "http://i1380.photobucket.com/albums/ah199/charlottesmith93/cat-business-man-in-suit-funny_zpsusogxmpc.jpg"}
+]
 
 
 reviews = [
@@ -54,15 +54,13 @@ reviews = [
    {description: "This Floof is doggone awesome and I wish I could make 10 more clones of him. Please come back!", rating: 5, upvotes: 5, downvotes: 2, user_id: 1, floof_id: 2}
  ]
 
+categories.each do |category|
+  Category.create(category)
+end
 
-#
-# categories.each do |category|
-#   Category.create(category)
-# end
-#
-# floofers.each do |floof|
-#   Floof.create(floof)
-# end
+floofers.each do |floof|
+  Floof.create(floof)
+end
 
 reviews.each do |review|
   Review.create(review)
