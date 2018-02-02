@@ -22,7 +22,7 @@
           <%- if current_user -%>
             <% if !current_user.avatar.path.nil? %>
               <% if current_user.avatar.path.split("/").first == "uploads" %>
-                <img id="avatar" src="https://s3.amazonaws.com/floofr/uploads/user/avatar/<%= "#{current_user.id}" %>/<%= "#{current_user.avatar.path.split("/").last}" %>" alt="Avatar" />
+                <img id="avatar" src="https://s3.amazonaws.com/floofr/<%= "#{current_user.avatar.path}" %>" alt="Avatar" />
               <% else %>
                 <img id="avatar" src="<%= "#{current_user.avatar.path}" %>" alt="Avatar" />
               <% end %>
