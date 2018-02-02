@@ -20,12 +20,13 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
-      expect(returned_json.length).to eq 2
+      expect(returned_json.length).to eq 1
 
-      expect(returned_json[0]["description"]).to eq first_review.description
-      expect(returned_json[0]["rating"]).to eq first_review.rating
-      expect(returned_json[0]["upvotes"]).to eq first_review.upvotes
-      expect(returned_json[0]["downvotes"]).to eq first_review.downvotes
+      expect(returned_json["reviews"][0]["id"]).to eq first_review.id
+      expect(returned_json["reviews"][0]["description"]).to eq first_review.description
+      expect(returned_json["reviews"][0]["rating"]).to eq first_review.rating
+      expect(returned_json["reviews"][0]["user"]["id"]).to eq first_review.user.id
+      expect(returned_json["reviews"][0]["floof"]["id"]).to eq first_review.floof.id
     end
   end
 
@@ -38,13 +39,13 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
-      expect(returned_json.length).to eq 9
+      expect(returned_json.length).to eq 1
 
-      expect(returned_json["id"]).to eq first_review.id
-      expect(returned_json["description"]).to eq first_review.description
-      expect(returned_json["rating"]).to eq first_review.rating
-      expect(returned_json["user_id"]).to eq first_review.user_id
-      expect(returned_json["floof_id"]).to eq first_review.floof_id
+      expect(returned_json["review"]["id"]).to eq first_review.id
+      expect(returned_json["review"]["description"]).to eq first_review.description
+      expect(returned_json["review"]["rating"]).to eq first_review.rating
+      expect(returned_json["review"]["user"]["id"]).to eq first_review.user.id
+      expect(returned_json["review"]["floof"]["id"]).to eq first_review.floof.id
     end
   end
 
@@ -64,10 +65,10 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
-      expect(returned_json["description"]).to eq(review_to_be[:review][:description])
-      expect(returned_json["rating"]).to eq(review_to_be[:review][:rating])
-      expect(returned_json["user_id"]).to eq(review_to_be[:review][:user_id])
-      expect(returned_json["floof_id"]).to eq(review_to_be[:review][:floof_id])
+      expect(returned_json["review"]["description"]).to eq(review_to_be[:review][:description])
+      expect(returned_json["review"]["rating"]).to eq(review_to_be[:review][:rating])
+      expect(returned_json["review"]["user"]["id"]).to eq(review_to_be[:review][:user_id])
+      expect(returned_json["review"]["floof"]["id"]).to eq(review_to_be[:review][:floof_id])
     end
 
     it "should return status 422 and errors if review not created" do
@@ -96,11 +97,11 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
-      expect(returned_json["id"]).to eq second_review.id
-      expect(returned_json["description"]).to eq second_review.description
-      expect(returned_json["rating"]).to eq second_review.rating
-      expect(returned_json["user_id"]).to eq second_review.user_id
-      expect(returned_json["floof_id"]).to eq second_review.floof_id
+      expect(returned_json["review"]["id"]).to eq second_review.id
+      expect(returned_json["review"]["description"]).to eq second_review.description
+      expect(returned_json["review"]["rating"]).to eq second_review.rating
+      expect(returned_json["review"]["user"]["id"]).to eq second_review.user_id
+      expect(returned_json["review"]["floof"]["id"]).to eq second_review.floof_id
     end
   end
 
@@ -113,11 +114,11 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
-      expect(returned_json["id"]).to eq first_review.id
-      expect(returned_json["description"]).to eq new_description[:description]
-      expect(returned_json["rating"]).to eq first_review.rating
-      expect(returned_json["user_id"]).to eq first_review.user_id
-      expect(returned_json["floof_id"]).to eq first_review.floof_id
+      expect(returned_json["review"]["id"]).to eq first_review.id
+      expect(returned_json["review"]["description"]).to eq new_description[:description]
+      expect(returned_json["review"]["rating"]).to eq first_review.rating
+      expect(returned_json["review"]["user"]["id"]).to eq first_review.user_id
+      expect(returned_json["review"]["floof"]["id"]).to eq first_review.floof_id
     end
   end
 

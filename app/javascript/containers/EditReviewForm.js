@@ -36,9 +36,9 @@ class EditReviewForm extends Component {
       })
       .then(body => {
         this.setState({
-          reviewId: body.id,
-          description: body.description,
-          rating: body.rating
+          reviewId: body.review.id,
+          description: body.review.description,
+          rating: body.review.rating
         })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
