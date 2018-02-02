@@ -47,7 +47,7 @@ class ReviewShowTile extends Component {
       <div className="reviews">
         <p id="rating">{ this.props.rating } stars</p>
         <p>{ this.props.description }</p>
-        <p>user { this.props.user }</p>
+        <p>{ this.props.author }</p>
         <div className="buttons">
           { deleteButton }
           { editButton }

@@ -30,7 +30,7 @@ class ReviewsContainer extends Component {
         return response.json()
       })
       .then(body => {
-        this.setState({ reviews: body })
+        this.setState({ reviews: body.reviews })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -63,7 +63,7 @@ class ReviewsContainer extends Component {
         return response.json()
       })
       .then(body => {
-        this.setState({ reviews: [...this.state.reviews, body] })
+        this.setState({ reviews: [...this.state.reviews, body.review] })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -94,9 +94,9 @@ class ReviewsContainer extends Component {
     .then(response => response.json())
     .then(body => {
       let updatedReviews = this.state.reviews.filter(review => {
-        return review.id !== body.id
+        return review.id !== body.review.id
       })
-      updatedReviews = updatedReviews.concat(body)
+      updatedReviews = updatedReviews.concat(body.review)
 
       this.setState({ reviews: updatedReviews })
     })
@@ -123,7 +123,7 @@ class ReviewsContainer extends Component {
     })
     .then(body => {
       let newReviews = this.state.reviews.filter(review => {
-        return review.id !== body.id
+        return review.id !== body.review.id
       })
       this.setState({ reviews: newReviews })
     })
@@ -141,7 +141,7 @@ class ReviewsContainer extends Component {
       reviewArray = reviews.map((review) => {
 
         if (currentUser) {
-          if (review.user_id === currentUser.id) {
+          if (review.user.id === currentUser.id) {
             createdByUser = true
           }
           else {
@@ -158,7 +158,7 @@ class ReviewsContainer extends Component {
             key={review.id}
             id={review.id}
             rating={review.rating}
-            user={review.user_id}
+            author={review.user.user_name}
             createdByUser={createdByUser}
             handleDelete={this.deleteReview}
             handleEdit={this.editReview}

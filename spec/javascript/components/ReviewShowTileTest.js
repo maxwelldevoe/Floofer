@@ -9,7 +9,7 @@ describe('Review show tile', () => {
   beforeEach(() => {
     mockReviewData = {
       id: 1,
-      user_id: 1,
+      user: {user_name: "newUser"},
       description: "Changed my life. Peed the carpet. Ate my food.",
       rating: 2,
       upvotes: 7,
@@ -25,7 +25,7 @@ describe('Review show tile', () => {
         key={mockReviewData.id}
         id={mockReviewData.id}
         rating={mockReviewData.rating}
-        user={mockReviewData.user_id}
+        author={mockReviewData.user.user_name}
         createdByUser={false}
         handleDelete={handleDeleteSpy}
       />
@@ -37,7 +37,7 @@ describe('Review show tile', () => {
         key={mockReviewData.id}
         id={mockReviewData.id}
         rating={mockReviewData.rating}
-        user={mockReviewData.user_id}
+        author={mockReviewData.user.user_name}
         createdByUser={true}
         handleDelete={handleDeleteSpy}
       />
@@ -56,8 +56,8 @@ describe('Review show tile', () => {
   })
 
   it('should have a user id with <p>', () => {
-    expect(notCreatedByUserWrapper.find('p').at(2)).toHaveText("user 1")
-    expect(createdByUserWrapper.find('p').at(2)).toHaveText("user 1")
+    expect(notCreatedByUserWrapper.find('p').at(2)).toHaveText("newUser")
+    expect(createdByUserWrapper.find('p').at(2)).toHaveText("newUser")
   })
 
   it('should have a delete button if createdByUser is true', () => {
