@@ -30,11 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'active_model_serializers', '0.10.6'
 
-gem "mini_magick"
-
 gem 'fog-aws'
-
 gem 'carrierwave'
+
 group :development, :test do
   gem "dotenv-rails"
 end
