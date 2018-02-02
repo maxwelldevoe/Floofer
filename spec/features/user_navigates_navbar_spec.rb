@@ -28,9 +28,10 @@ feature 'NavBar' do
     fill_in 'Password', with: user.password
 
     click_button 'Log in'
+
     expect(page).to have_content('Signed in successfully')
-    expect(page).to have_link('User Actions')
-    expect(page).to have_link('Settings')
+    expect(page).to have_link("#{user.first_name} #{user.last_name}")
+    expect(page).to have_link('Edit Info')
     expect(page).to have_link('Add Floof')
     expect(page).to have_link('Sign Out')
   end
