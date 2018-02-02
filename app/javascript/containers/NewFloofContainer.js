@@ -108,6 +108,7 @@ class NewFloofContainer extends Component {
   }
 
   handleClear(event) {
+    event.preventDefault()
     this.setState({
       floof: {
         name: '',
