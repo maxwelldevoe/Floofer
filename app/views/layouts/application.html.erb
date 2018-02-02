@@ -21,7 +21,7 @@
         <ul class="right">
           <%- if current_user -%>
             <% if !current_user.avatar.path.nil? %>
-              <% if current_user.avatar.path.split("/").first == "uploads" %>
+              <% if current_user.avatar.path.start_with?("uploads") %>
                 <img id="avatar" src="https://s3.amazonaws.com/floofr/<%= "#{current_user.avatar.path}" %>" alt="Avatar" />
               <% else %>
                 <img id="avatar" src="<%= "#{current_user.avatar.path}" %>" alt="Avatar" />
