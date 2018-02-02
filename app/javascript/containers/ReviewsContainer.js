@@ -131,7 +131,6 @@ class ReviewsContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     let reviews = this.state.reviews;
     let reviewArray;
 
